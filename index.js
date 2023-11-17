@@ -106,6 +106,18 @@ app.post('/register', async (req, res) => {
     }
 });
 
+app.get('/users', (req, res) => {
+    db.query('SELECT * FROM users', (err, results) => {
+        if (err) {
+            console.error('Error al obtener la lista de usuarios desde la base de datos:', err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+
 
 
 
